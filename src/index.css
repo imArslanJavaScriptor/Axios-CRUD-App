@@ -99,3 +99,21 @@ button:hover {
     }
   }
 }
+
+@media screen and (max-width: 980px) {
+  .section-from form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section-post ol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .section-post ol {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
