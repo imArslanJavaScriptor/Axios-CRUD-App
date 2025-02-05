@@ -16,6 +16,8 @@ const handleDeletePost = async (id) => {
   if(res.status === 200) {
     let newUpdatedPost = postsData.filter((currentElem) => currentElem.id !== id)
     setPostsData(newUpdatedPost)
+  }else {
+    console.log("Failed To Delete The Post". res.status)
   }
     
   } catch (error) {
@@ -29,6 +31,10 @@ const handleDeletePost = async (id) => {
   }, []);
 
   return (
+    <>
+    <section>
+      <Form/>
+    </section>
     <section className="section-post">
       <ol>
         {postsData.map((currentElem) => {
@@ -47,6 +53,7 @@ const handleDeletePost = async (id) => {
         })}
       </ol>
     </section>
+    </>
   );
 }
 
