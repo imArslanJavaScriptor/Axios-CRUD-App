@@ -1,64 +1,109 @@
-import React, { useState } from "react";
-import { postData } from "../api/PostApi";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-constant-condition */
+import { useEffect, useState } from "react";
+import { postData, updateData } from "../api/PostApi";
 
-function Form({ data, setData }) {
+export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
   const [addData, setAddData] = useState({
     title: "",
     body: "",
   });
 
+  let isEmpty = Object.keys(updateDataApi).length === 0;
+
+  //   get the udpated Data and add into input field
+  useEffect(() => {
+    updateDataApi &&
+      setAddData({
+        title: updateDataApi.title || "",
+        body: updateDataApi.body || "",
+      });
+  }, [updateDataApi]);
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setAddData((prev) => ({ ...prev, [name]: value }));
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setAddData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   const addPostData = async () => {
-    try {
-      const res = await postData(addData); // ✅ Pass addData to postData
-      console.log(res.data);
-      if (res.status === 201) {
-        setData([...data, res.data]);
-        setAddData({ title: "", body: "" }); // ✅ Clear input fields after submission
-      }
-    } catch (error) {
-      console.error("Error posting data:", error);
+    const res = await postData(addData);
+    console.log("res", res);
+
+    if (res.status === 201) {
+      setData([...data, res.data]);
+      setAddData({ title: "", body: "" });
     }
   };
 
-  const handleSubmit = (e) => {
+  //   updatePostData
+  const updatePostData = async () => {
+    try {
+      const res = await updateData(updateDataApi.id, addData);
+      console.log(res);
+
+      if (res.status === 200) {
+        setData((prev) => {
+          return prev.map((curElem) => {
+            return curElem.id === res.data.id ? res.data : curElem;
+          });
+        });
+
+        setAddData({ title: "", body: "" });
+        setUpdateDataApi({});
+      }
+    } catch ({ error }) {
+      console.log(error);
+    }
+  };
+
+  //   form submission
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    addPostData(); // ✅ No need to pass addData here
+    const action = e.nativeEvent.submitter.value;
+    if (action === "Add") {
+      addPostData();
+    } else if (action === "Edit") {
+      updatePostData();
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleFormSubmit}>
       <div>
-        <label htmlFor="title">Title:</label>
+        <label htmlFor="title"></label>
         <input
-          id="title"
           type="text"
-          name="title"
           autoComplete="off"
+          id="title"
+          name="title"
           placeholder="Add Title"
           value={addData.title}
           onChange={handleInputChange}
         />
       </div>
+
       <div>
-        <label htmlFor="body">Body:</label>
+        <label htmlFor="body"></label>
         <input
-          id="body"
           type="text"
-          name="body"
           autoComplete="off"
           placeholder="Add Post"
+          id="body"
+          name="body"
           value={addData.body}
           onChange={handleInputChange}
         />
       </div>
-      <button type="submit">Add</button>
+      <button type="submit" value={isEmpty ? "Add" : "Edit"}>
+        {isEmpty ? "Add" : "Edit"}
+      </button>
     </form>
   );
-}
-
-export default Form;
+};

@@ -1,15 +1,11 @@
-import React from "react";
-import Posts from "./components/Posts";
+import { Posts } from "./components/Posts";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <section className="main-section">
-        {/* Post Component */}
-        <Posts />
-      </section>
-    </>
+    <section className="main-section">
+      <Posts />
+    </section>
   );
-}
+};
 
 export default App;
