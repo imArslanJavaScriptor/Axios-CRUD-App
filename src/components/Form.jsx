@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-constant-condition */
 import { useEffect, useState } from "react";
 import { postData, updateData } from "../api/PostApi";
 
@@ -75,33 +73,34 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <div>
-        <label htmlFor="title"></label>
+    <form onSubmit={handleFormSubmit} className="my-6 flex items-center gap-2 bg-[#ebebeb] rounded-[100px] overflow-hidden p-2">
+      <div className="inp-box">
         <input
           type="text"
           autoComplete="off"
           id="title"
           name="title"
           placeholder="Add Title"
+          className="inp-style"
           value={addData.title}
           onChange={handleInputChange}
         />
       </div>
 
-      <div>
-        <label htmlFor="body"></label>
+     <div className="inp-box">
         <input
           type="text"
           autoComplete="off"
           placeholder="Add Post"
           id="body"
           name="body"
+          className="inp-style"
           value={addData.body}
           onChange={handleInputChange}
         />
       </div>
-      <button type="submit" value={isEmpty ? "Add" : "Edit"}>
+
+      <button className="form-btn" type="submit" value={isEmpty ? "Add" : "Edit"}>
         {isEmpty ? "Add" : "Edit"}
       </button>
     </form>

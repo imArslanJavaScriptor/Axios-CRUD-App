@@ -1,133 +1,37 @@
 @import "tailwindcss";
 
-
-body {
-  background-color: #17202a;
+.btn {
+  @apply py-2 px-5 cursor-pointer border-0 outline-0 rounded-[4px] min-w-[100px] 
 }
 
-html {
-  font-size: 62.5%;
+.btn-edit {
+  @apply bg-green-400 hover:bg-green-600 transition duration-300
 }
 
-p,
-a,
-li,
-input {
-  font-size: 1.6rem;
-  letter-spacing: 0.12rem;
-  line-height: 1.5;
-  color: #fff;
+.btn-delete {
+  @apply bg-red-400 hover:bg-red-600 transition duration-300
 }
 
-button {
-  padding: 0.8rem 3.2rem;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  border: 0;
-  background-color: hsl(160, 80%, 48%);
-  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-size: 15px;
-  transition: all 0.5s ease;
-  margin-left: 1.2rem;
-  -webkit-border-radius: 0.3rem;
-  -moz-border-radius: 0.3rem;
-  -ms-border-radius: 0.3rem;
-  -o-border-radius: 0.3rem;
+.inp-style {
+  @apply bg-transparent border-0 outline-0 h-full w-full
 }
-
-button:hover {
-  background-color: hsl(160, 80%, 48%);
-  color: hsl(0, 0%, 100%);
-  box-shadow: rgb(9, 172, 115) 0px 7px 19px 0px;
-}
-
-/* ================================================ */
 
 .main-section {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @apply w-full flex flex-col items-center justify-center bg-zinc-900
 }
 
-.section-form {
-  padding: 1.6rem;
-  background-color: #212f3d;
-  border-radius: 0.6rem;
-  -webkit-border-radius: 0.6rem;
-  -moz-border-radius: 0.6rem;
-  -ms-border-radius: 0.6rem;
-  -o-border-radius: 0.6rem;
-  margin: 3.2rem auto;
-
-  form {
-    display: flex;
-    gap: 1.2rem;
-  }
-
-  & input {
-    width: 24rem;
-    color: #212f3d;
-    border: 0.1rem solid grey;
-    outline: none;
-    border-radius: 0.3rem;
-    -webkit-border-radius: 0.3rem;
-    -moz-border-radius: 0.3rem;
-    -ms-border-radius: 0.3rem;
-    -o-border-radius: 0.3rem;
-    padding: 0.8rem 1.2rem;
-  }
+.card-styles {
+  @apply bg-gradient-to-bl from-green-400 to-black/40 border-l-4 border-green-500 p-2 max-w-[500px] sm:max-w-[400px] w-full flex flex-col justify-between
 }
 
-.section-post {
-  width: 90%;
-
-  & ol {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3.2rem;
-
-    & li {
-      background-color: #212f3c;
-      padding: 1.6rem;
-      border-radius: 0.3rem;
-      -webkit-border-radius: 0.3rem;
-      -moz-border-radius: 0.3rem;
-      -ms-border-radius: 0.3rem;
-      -o-border-radius: 0.3rem;
-      list-style-position: inside;
-      border-left: 0.2rem solid #fff;
-    }
-
-    & .btn-delete {
-      background-color: #e74c3c;
-
-      &:hover {
-        color: hsl(0, 0%, 100%);
-        box-shadow: rgb(167, 54, 13) 0px 7px 19px 0px;
-      }
-    }
-  }
+.list-layout {
+  @apply grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4
 }
 
-@media screen and (max-width: 980px) {
-  .section-form form {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .section-post ol {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.inp-box {
+  @apply bg-green-400 rounded-[100px] py-2 px-2
 }
 
-@media screen and (max-width: 720px) {
-  .section-post ol {
-    grid-template-columns: repeat(1, 1fr);
-  }
+.form-btn {
+  @apply bg-black min-w-[100px] rounded-[100px] text-white px-5 py-2 border-0 outline-0
 }
