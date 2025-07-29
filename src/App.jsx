@@ -1,11 +1,11 @@
 import { Posts } from "./components/Posts";
 
-const App = () => {
+function App() {
   return (
-    <section className="main-section">
+     <section className="main-section">
       <Posts />
     </section>
-  );
-};
+  )
+}
 
 export default App;
